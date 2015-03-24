@@ -161,7 +161,7 @@
           <div class="name"><%= image.fullName %> (<%= image.browser %>)</div>
           <div class="colContainer">
             <div class="col">
-              <h2>Предыдущий запуск</h2>
+              <h2>Last Run</h2>
     <a href="#<%= image.test %>"><img src="" data-src="<%= image.test %>"></a>
     <section class="modal--show" id="<%= image.test %>" tabindex="-1" data-cssmodal-resize
     role="dialog" aria-labelledby="modal-label" aria-hidden="true">
@@ -171,11 +171,11 @@
     </div>
     </div>
 
-    <a href="#!" class="modal-close" title="Закрыть" data-close="Close"
+    <a href="#!" class="modal-close" title="Close" data-close="Close"
     data-dismiss="modal">×</a>
     </section>
             </div><div class="col">
-              <h2>Разница</h2>
+              <h2>Difference</h2>
     <a href="#<%= image.diff %>"><img src="" data-src="<%= image.diff %>"></a>
     <section class="modal--show" id="<%= image.diff %>" tabindex="-1" data-cssmodal-resize
     role="dialog" aria-labelledby="modal-label" aria-hidden="true">
@@ -185,11 +185,11 @@
     </div>
     </div>
 
-    <a href="#!" class="modal-close" title="Закрыть" data-close="Close"
+    <a href="#!" class="modal-close" title="Close" data-close="Close"
     data-dismiss="modal">×</a>
     </section>
             </div><div class="col">
-              <h2>Новый запуск</h2>
+              <h2>New Run</h2>
     <a href="#<%= image.orig %>"><img src="" data-src="<%= image.orig %>"></a>
     <section class="modal--show" id="<%= image.orig %>" tabindex="-1" data-cssmodal-resize
     role="dialog" aria-labelledby="modal-label" aria-hidden="true">
@@ -199,7 +199,7 @@
     </div>
     </div>
 
-    <a href="#!" class="modal-close" title="Закрыть" data-close="Close"
+    <a href="#!" class="modal-close" title="Close" data-close="Close"
     data-dismiss="modal">×</a>
     </section>
             </div>
