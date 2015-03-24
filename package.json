@@ -15,6 +15,11 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
+    "adm-zip": "^0.4.7",
+    "async": "^0.9.0",
+    "fs-extra": "^0.16.5",
+    "progress": "^1.1.8",
+    "request": "^2.53.0",
     "shelljs": "~0.2.6"
   },
   "devDependencies": {
@@ -29,5 +34,27 @@
     "image",
     "image diff",
     "perceptual image diff"
-  ]
+  ],
+  "readme": "# grunt-image-diff\r\n\r\n> Grunt implementation of Perceptual Image Diff\r\n\r\n## Getting Started\r\nThis plugin requires Grunt `~0.4.2`\r\n\r\nIf you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:\r\n\r\n```shell\r\nnpm install grunt-image-diff --save-dev\r\n```\r\n\r\nOnce the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:\r\n\r\n```js\r\ngrunt.loadNpmTasks('grunt-image-diff');\r\n```\r\n\r\n## The \"image_diff\" task\r\n\r\n### Overview\r\nIn your project's Gruntfile, add a section named `image_diff` to the data object passed into `grunt.initConfig()`.\r\n\r\n```js\r\ngrunt.initConfig({\r\n  image_diff: {\r\n    options: {\r\n      // Task-specific options go here.\r\n    },\r\n    your_target: {\r\n      // Target-specific file lists and/or options go here.\r\n    },\r\n  },\r\n});\r\n```\r\n\r\n### Options\r\n\r\n#### options.orig\r\nType: `String`\r\nDefault value: `'_orig'`\r\n\r\nA string value original file pattern.\r\n\r\n#### options.test\r\nType: `String`\r\nDefault value: `'_test'`\r\n\r\nA string value test of difference file pattern.\r\n\r\n#### options.diff\r\nType: `String`\r\nDefault value: `'_diff'`\r\n\r\nA string value difference file pattern to write difference to the file.\r\n\r\n#### options.luminanceonly\r\nType: `Bool`\r\nDefault value: `true`\r\n\r\nTo only consider luminance; ignore chroma (color) in the comparation.\r\n\r\n#### options.colorfactor\r\nType: `String`\r\nDefault value: `'0.0'`\r\n\r\nHow much of color to use, 0.0 to 1.0, 0.0 = ignore color.\r\n\r\n### Usage Examples\r\n\r\n#### Default Options\r\n\r\n```js\r\ngrunt.initConfig({\r\n  image_diff: {\r\n\toptions: {\r\n\t  orig: '_orig',\r\n\t  test: '_test',\r\n\t  diff: '_diff',\r\n\t},\r\n\tsrc: './screenshots/*.png'\r\n  },\r\n});\r\n```\r\n## Release History\r\n0.1.1 - Change options. Include luminanceonly and colorfactor.\r\n0.1.0 - First version.\r\n",
+  "readmeFilename": "README.md",
+  "_id": "grunt-image-diff@0.1.1",
+  "dist": {
+    "shasum": "7ca2255cb290e3cbbb1634b2e9fef9c1345586b9",
+    "tarball": "http://registry.npmjs.org/grunt-image-diff/-/grunt-image-diff-0.1.1.tgz"
+  },
+  "_from": "grunt-image-diff@*",
+  "_npmVersion": "1.3.14",
+  "_npmUser": {
+    "name": "kanema",
+    "email": "du@kanema.com.br"
+  },
+  "maintainers": [
+    {
+      "name": "kanema",
+      "email": "du@kanema.com.br"
+    }
+  ],
+  "directories": {},
+  "_shasum": "7ca2255cb290e3cbbb1634b2e9fef9c1345586b9",
+  "_resolved": "https://registry.npmjs.org/grunt-image-diff/-/grunt-image-diff-0.1.1.tgz"
 }
