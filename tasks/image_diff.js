@@ -213,7 +213,6 @@ module.exports = function(grunt) {
     });
 
     if (tests > 0) {
-      console.log(options.reportPath);
       grunt.log.ok(tests + " tested image(s).");
       grunt.file.write(
         options.reportPath + '/index.html',
@@ -226,8 +225,6 @@ module.exports = function(grunt) {
           } }
         )
       );
-      console.log(images);
-
     } else {
       grunt.log.warn("No tested images.");
     }
