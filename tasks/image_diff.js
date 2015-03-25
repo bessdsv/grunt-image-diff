@@ -163,9 +163,6 @@ module.exports = function(grunt) {
         if (options.colorfactor) {
           cmd += '-colorfactor '+ options.colorfactor +' ';
         }
-        if (!fs.existsSync(path.dirname(diff))){
-          fs.mkdirsSync(path.dirname(diff));
-        }
         var result = shell.exec(cmd, {silent:true, async:false}).output;
 
         var success = false;
@@ -184,6 +181,9 @@ module.exports = function(grunt) {
 
         if ( ! success) {
           grunt.log.warn(orig + ': "' + msg + '" see diff file "' + diff + '"');
+          if (!fs.existsSync(path.dirname(diff))){
+            fs.mkdirsSync(path.dirname(diff));
+          }
           shell.exec(path.join(binPath, "compare.exe") + ' ' + orig + ' ' + test + ' ' + diff, {silent:true, async:false})
           var origFileName = path.basename(orig, path.extname(orig));
           var diffFileName = path.basename(diff, path.extname(diff));
