@@ -155,7 +155,7 @@ module.exports = function(grunt) {
 
         tests++;
 
-        var cmd = perceptualdiff + ' "' + orig + '" "' + test + '" -verbose';
+        var cmd = perceptualdiff + ' "' + orig + '" "' + test + '" -verbose ';
 
         if (options.luminanceonly) {
           cmd += '-luminanceonly ';
@@ -214,17 +214,21 @@ module.exports = function(grunt) {
 
     if (tests > 0) {
       grunt.log.ok(tests + " tested image(s).");
-      grunt.file.write(
-        options.reportPath + '/index.html',
-        grunt.template.process(
-          grunt.file.read( path.dirname( __dirname ) + '/tpl/magic.tpl' ),
-          { data : {
-            now          : + new Date(),
-            options      : options,
-            templateData : images
-          } }
-        )
-      );
+      if (images.length) {
+        grunt.file.write(
+          options.reportPath + '/index.html',
+          grunt.template.process(
+            grunt.file.read(path.dirname(__dirname) + '/tpl/magic.tpl'),
+            {
+              data: {
+                now         : +new Date(),
+                options     : options,
+                templateData: images
+              }
+            }
+          )
+        );
+      }
     } else {
       grunt.log.warn("No tested images.");
     }
