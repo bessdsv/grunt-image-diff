@@ -16,25 +16,14 @@ var ProgressBar = require('progress');
 var AdmZip = require('adm-zip');
 var async = require('async');
 var binPath = path.normalize(path.join(__dirname, '../bin/'));
-var downloadsFilesShortNames = ["perceptualdiff", "FreeImage", "compare"];
+var downloadsFilesShortNames = ["compare"];
 var downloadFiles = [
-  {
-    url : "http://sourceforge.net/projects/pdiff/files/pdiff/perceptualdiff-1.1.1/perceptualdiff-1.1.1-win.zip/download",
-    extractFileName : path.join(binPath, downloadsFilesShortNames[0] + '.exe'),
-    fileName : path.join(binPath, downloadsFilesShortNames[0] + '.zip')
-  },
-  {
-    url : "http://sourceforge.net/projects/freeimage/files/Binary%20Distribution/3.17.0/FreeImage3170Win32Win64.zip/download",
-    extractFileName : path.join(binPath, downloadsFilesShortNames[1] + '.dll'),
-    extractFilePath : "FreeImage/Dist/x32/",
-    fileName : path.join(binPath, downloadsFilesShortNames[1] + '.zip')
-  },
   {
     //url : "http://www.imagemagick.org/download/binaries/ImageMagick-6.9.1-0-Q16-x86-windows.zip",
     url: "http://mirrors-ru.go-parts.com/mirrors/ImageMagick/binaries/ImageMagick-6.9.1-0-Q16-x86-windows.zip",
-    extractFileName : path.join(binPath, downloadsFilesShortNames[2] + '.exe'),
+    extractFileName : path.join(binPath, downloadsFilesShortNames[0] + '.exe'),
     extractFilePath : "ImageMagick-6.9.1-0/",
-    fileName : path.join(binPath, downloadsFilesShortNames[2] + '.zip')
+    fileName : path.join(binPath, downloadsFilesShortNames[0] + '.zip')
   }
 ];
 
@@ -155,36 +144,20 @@ module.exports = function(grunt) {
 
         tests++;
 
-        var cmd = perceptualdiff + ' "' + orig + '" "' + test + '" -verbose ';
-
-        if (options.luminanceonly) {
-          cmd += '-luminanceonly ';
-        }
-        if (options.colorfactor) {
-          cmd += '-colorfactor '+ options.colorfactor +' ';
-        }
+        var cmd = path.join(binPath, "compare -metric AE") + ' "' + orig + '" "' + test + '" NULL:';
         var result = shell.exec(cmd, {silent:true, async:false}).output;
 
         var success = false;
-        if (result.match(/PASS: /)) {
-          result = result.split('PASS: ');
+        if (result.match(/^0$/)) {
           success = true;
-        } else {
-          result = result.split('FAIL: ');
-        }
-
-        var msg = "Invalid file.";
-        if (result && result.length > 1) {
-          result = result[1].split("\r\n");
-          msg = result[0];
         }
 
         if ( ! success) {
-          grunt.log.warn(orig + ': "' + msg + '" see diff file "' + diff + '"');
+          grunt.log.warn(orig + ': invalid file "' + '" see diff file "' + diff + '"');
           if (!fs.existsSync(path.dirname(diff))){
             fs.mkdirsSync(path.dirname(diff));
           }
-          shell.exec(path.join(binPath, "compare.exe") + ' ' + orig + ' ' + test + ' ' + diff, {silent:true, async:false})
+          shell.exec(path.join(binPath, "compare") + ' ' + orig + ' ' + test + ' ' + diff, {silent:true, async:false})
           var origFileName = path.basename(orig, path.extname(orig));
           var diffFileName = path.basename(diff, path.extname(diff));
           var testFileName = path.basename(test, path.extname(test));
